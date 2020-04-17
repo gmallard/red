@@ -30,6 +30,11 @@ var (
 
 func main() {
 	//
+	// Note: the package author has seen literatre where the shift value of
+	// Caesar's cipher id documented as being 3.  And also seen literature
+	// where it is documented as 5.
+	// Here we use 5. YMMV.
+	//
 	r, _ := red.NewAlpha(red.AlLU, 5, nil)
 	ll.Printf("Plaintext_Alphabet:  %s\n", r.PlainAlpha())
 	ll.Printf("Ciphertext_Alphabet: %s\n", r.CipherAlpha())

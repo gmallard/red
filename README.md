@@ -1,8 +1,9 @@
-# Rotational Encryptor / Decryptor #
+# Rotational (AKA shift) Encrypton / Decryption #
 
 ## Introduction ##
 
-A rotational encryptor / decrypter.  A play toy for your enjoyment.
+A rotational encryption / decryption implementation.  A play toy for your
+enjoyment.
 
 **Note: This is a toy.  Do not use it in production or any serious environment.**
 
@@ -57,7 +58,11 @@ alphabet.
 
 ### Shift Values Left Versus Right ###
 
-Default behavior can be changed by calling the *NewAlphaParms* constructor
+Default is a positive shift value uses a left shift of the alphabet.
+
+And a negative shift value uses a right shift of the alphabet.
+
+Default behavior can be changed by calling the constructor
 with an appropriate instance of *NewParms*.
 
 ## Examples ##
