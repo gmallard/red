@@ -37,7 +37,9 @@ var (
 
 	patch = "1" // Patch
 
-	mod = "" // Modification level
+	// mod = "" // Modification level
+
+	mod = "-m.1" // Modification level
 
 	// mod = ""
 )
