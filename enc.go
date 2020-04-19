@@ -25,13 +25,19 @@ import (
 // returned if the plaintext is not valid UTF8.
 func (r *EDData) Encrypt(pt string) (cs string, e error) {
 	if !utf8.ValidString(pt) {
-		return "", fmt.Errorf("%s", ErrU8PT)
+		c := 0
+		size := 0
+		for i := 0; i < len(pt); i += size {
+			r, size := utf8.DecodeRuneInString(pt)
+			if r == utf8.RuneError {
+				return "", fmt.Errorf(
+					"plaintext has invalid UTF8 at offset: %d, hex value: 0x%X",
+					c, pt[i:i+1])
+			}
+			pt = pt[size:]
+			c++
+		}
 	}
-	//
-	if !utf8.ValidString(pt) {
-		return "", fmt.Errorf(ErrU8PT)
-	}
-
 	rr := make([]rune, 0)
 	ter := []rune(pt)
 	for _, v := range ter {
