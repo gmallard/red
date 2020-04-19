@@ -51,7 +51,7 @@ func main() {
 		os.Exit(1)
 	}
 	//
-	ll.Printf("Ciphertext Out: %s\n", cto)
+	ll.Printf("Ciphertext Out: %s\n", red.StringBreak(cto, red.CtBreak, " "))
 	pto, e := r.Decrypt(cto)
 	if e != nil {
 		ll.Println("Error:", e)

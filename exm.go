@@ -16,18 +16,14 @@
 
 package red
 
-// Common alphabets generally useful.
-const (
-	AlLc    = "abcdefghijklmnopqrstuvwxyz"
-	AlUc    = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	AlLU    = AlLc + AlUc
-	AlNuM   = "0123456789"
-	AlLUN   = AlLc + AlUc + AlNuM
-	CtBreak = 5 // Ciphertext spacing
-)
-
-// Unexported constants.
-const (
-	dfltAlpha = AlLc // Default alphabet
-	dfltShift = 5    // Default shift
-)
+// StringBreak breaks a string by adding spacing everu n'th character.
+func StringBreak(s string, n int, b string) string {
+	o := ""
+	for i, k := range s {
+		o = o + string(k)
+		if i > 0 && i%(n-1) == 0 {
+			o = o + b
+		}
+	}
+	return o
+}
