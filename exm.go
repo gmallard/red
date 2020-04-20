@@ -1,5 +1,5 @@
 //
-// Copyright © 0 Guy M. Allard
+// Copyright © 2020 Guy M. Allard
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,35 +16,14 @@
 
 package red
 
-/*
-	Provide package version information.  A nod to the concept of semver.
-
-	Example:
-		fmt.Println("current red version", red.Version())
-
-*/
-
-import (
-	"fmt"
-)
-
-var (
-	pref = "v" // Prefix
-
-	major = "0" // Major
-
-	minor = "0" // Minor
-
-	patch = "2" // Patch
-
-	// mod = "" // Modification level
-
-	mod = "" // Modification level
-
-	// mod = ""
-)
-
-// Version returns the red package version.
-func Version() string {
-	return fmt.Sprintf("%s%s.%s.%s%s", pref, major, minor, patch, mod)
+// StringBreak breaks a string by adding spacing everu n'th character.
+func StringBreak(s string, n int, b string) string {
+	o := ""
+	for i, k := range s {
+		o = o + string(k)
+		if i > 0 && i%(n-1) == 0 {
+			o = o + b
+		}
+	}
+	return o
 }

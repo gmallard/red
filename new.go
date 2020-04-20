@@ -50,7 +50,19 @@ func New(p *NewParms) (ri *EDData) {
 func NewAlpha(a string, s int, p *NewParms) (ri *EDData, e error) {
 	//
 	if !utf8.ValidString(a) {
-		return nil, fmt.Errorf("%s", ErrU8Alpha)
+		c := 0
+		size := 0
+		for i := 0; i < len(a); i += size {
+			r, size := utf8.DecodeRuneInString(a)
+			if r == utf8.RuneError {
+				return nil, fmt.Errorf(
+					"alphabet has invalid UTF8 at offset: %d, hex value: 0x%X",
+					c, a[i:i+1])
+			}
+			a = a[size:]
+			c++
+		}
+
 	}
 	//
 	ri = &EDData{pta: a,

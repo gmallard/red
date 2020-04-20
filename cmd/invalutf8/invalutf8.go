@@ -1,5 +1,5 @@
 //
-// Copyright © 0 Guy M. Allard
+// Copyright © 2020 Guy M. Allard
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,37 +14,29 @@
 // limitations under the License.
 //
 
-package red
-
-/*
-	Provide package version information.  A nod to the concept of semver.
-
-	Example:
-		fmt.Println("current red version", red.Version())
-
-*/
+package main
 
 import (
 	"fmt"
+	"log"
+	"os"
+
+	//
+	"gmallard.com/cryplay/red"
 )
 
 var (
-	pref = "v" // Prefix
-
-	major = "0" // Major
-
-	minor = "0" // Minor
-
-	patch = "2" // Patch
-
-	// mod = "" // Modification level
-
-	mod = "" // Modification level
-
-	// mod = ""
+	ll = log.New(os.Stdout, "INVU8 ", log.Ldate|log.Lmicroseconds|log.Lshortfile)
 )
 
-// Version returns the red package version.
-func Version() string {
-	return fmt.Sprintf("%s%s.%s.%s%s", pref, major, minor, patch, mod)
+func main() {
+	//
+	a := "abc" + "\xc0" + "def" // The invalid alphabet
+	r, e := red.NewAlpha(a, 2, nil)
+	if e == nil {
+		fmt.Println("ERROR error was expected")
+		os.Exit(1)
+	}
+	_ = r
+	fmt.Printf("Error was: %v\n", e)
 }

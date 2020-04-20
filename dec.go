@@ -25,13 +25,19 @@ import (
 // returned if the ciphertext is not valid UTF8.
 func (r *EDData) Decrypt(ct string) (cs string, e error) {
 	if !utf8.ValidString(ct) {
-		return "", fmt.Errorf("%s", ErrU8CT)
+		c := 0
+		size := 0
+		for i := 0; i < len(ct); i += size {
+			r, size := utf8.DecodeRuneInString(ct)
+			if r == utf8.RuneError {
+				return "", fmt.Errorf(
+					"ciphertext has invalid UTF8 at offset: %d, hex value: 0x%X",
+					c, ct[i:i+1])
+			}
+			ct = ct[size:]
+			c++
+		}
 	}
-	//
-	if !utf8.ValidString(ct) {
-		return "", fmt.Errorf(ErrU8PT)
-	}
-
 	rr := make([]rune, 0)
 	ter := []rune(ct)
 	for _, v := range ter {
