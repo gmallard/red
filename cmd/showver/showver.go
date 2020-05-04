@@ -1,5 +1,5 @@
 //
-// Copyright © 2016-2019 Guy M. Allard
+// Copyright © 2017-2018 Guy M. Allard
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,35 +14,14 @@
 // limitations under the License.
 //
 
-package red
-
-/*
-	Provide package version information.  A nod to the concept of semver.
-
-	Example:
-		fmt.Println("current red version", stompngo.Version())
-
-*/
+package main
 
 import (
 	"fmt"
 	//
+	"gmallard.com/goplay/cryplay/red"
 )
 
-var (
-	pref = "v" // Prefix
-
-	major = "0" // Major
-
-	minor = "0" // Minor
-
-	patch = "0" // Patch
-
-	mod = "-m.1" // Modification level
-
-	// mod = ""
-)
-
-func Version() string {
-	return fmt.Sprintf("%s%s.%s.%s%s", pref, major, minor, patch, mod)
+func main() {
+	fmt.Println(red.Version())
 }
